@@ -7,48 +7,55 @@ package herencia3;
 
 import java.util.ArrayList;
 
-public class ReporteDistancia extends Reporte{
-    
+public class ReporteDistancia extends Reporte {
+
     private ArrayList<EstudianteDistancia> lista;
     private double totalMatriculaDistancia;
-    
-    public ReporteDistancia(String nombre, String carrera, String ciclo){
+
+    public ReporteDistancia(String nombre, String carrera, String ciclo) {
         super(nombre, carrera, ciclo);
-        
+
     }
-    
-    public void establecerLista(ArrayList<EstudianteDistancia> listado){
+
+    public void establecerLista(ArrayList<EstudianteDistancia> listado) {
         lista = listado;
     }
-    
-    public void establecerTotalMatriculasDistancia(){
-        
+
+    public void calcularTotalMatriculasDistancia() {
+
         for (int i = 0; i < lista.size(); i++) {
-            totalMatriculaDistancia = totalMatriculaDistancia + 
-                    lista.get(i).obtenerMatriculaDistancia();
+            totalMatriculaDistancia = totalMatriculaDistancia
+                    + lista.get(i).obtenerMatriculaDistancia();
         }
     }
-    
-    public ArrayList<EstudianteDistancia> obtenerLista(){
+
+    public ArrayList<EstudianteDistancia> obtenerLista() {
         return lista;
     }
-    
-    public double obtenerTotalMatriculasDistancia(){
+
+    public double obtenerTotalMatriculasDistancia() {
         return totalMatriculaDistancia;
     }
-    
+
     @Override
-    public String toString(){
-        
-        
+    public String toString() {
+
+        String cadenaEstudiante = String.format("%s\n", "Lista Estudiantes\n");
+        for (int i = 0; i < lista.size(); i++) {
+            cadenaEstudiante = String.format("%s%s\n",
+                    cadenaEstudiante, lista.get(i));
+
+        }
         String cadena = String.format("%s\nCarrera: %s \n"
                 + "Ciclo: %s\n\n"
-                + "El total de matriculas es: %.2f\n", 
+                + "%s"
+                + "El total de matriculas es: %.2f\n",
                 nombre,
                 carrera,
                 ciclo,
+                cadenaEstudiante,
                 obtenerTotalMatriculasDistancia());
         return cadena;
     }
-    
+
 }
